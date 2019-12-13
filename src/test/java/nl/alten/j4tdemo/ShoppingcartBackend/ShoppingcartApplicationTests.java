@@ -14,9 +14,9 @@ import org.springframework.web.client.HttpClientErrorException;
 import nl.alten.j4tdemo.ShoppingcartBackend.models.Car;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = CarsApplication.class,
+@SpringBootTest(classes = ShoppingcartApplication.class,
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class CarsApplicationTests {
+public class ShoppingcartApplicationTests {
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -28,9 +28,6 @@ public class CarsApplicationTests {
         return "http://localhost:" + port + "/api/v1";
     }
 
-    @Test
-    public void contextLoads() {
-    }
 
     /**
      * Here we test that we can get all the cars in the database

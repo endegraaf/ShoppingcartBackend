@@ -12,11 +12,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(classes = CarsApplication.class,
+@SpringBootTest(classes = ShoppingcartApplication.class,
         webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureMockMvc
 class MockingTests {
@@ -30,7 +30,7 @@ class MockingTests {
     @Test
     void isMockWorking() throws Exception {
 
-        mvc.perform(get("/")
+        mvc.perform(get("/api/v1/cars")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
@@ -38,12 +38,12 @@ class MockingTests {
     @Test
     void getHelloWorldFromMock() throws Exception {
 
-        ResultMatcher expect = MockMvcResultMatchers.content().string("Hello World!");
+        System.out.println(mvc.perform(post("/api/v1/cars")
+                .contentType(MediaType.APPLICATION_JSON).content("{\n" +
+                        "\t\"carName\": \"Lightyear One\",\n" +
+                        "\t\"doors\": 2\n" +
+                        "}")
+        ).andExpect(jsonPath(".carName").exists()));
 
-        mvc.perform(get("/")
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(expect);
     }
-
-
 }
