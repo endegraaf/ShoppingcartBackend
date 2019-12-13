@@ -11,8 +11,14 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultMatcher;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import java.util.regex.Matcher;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
@@ -34,7 +40,18 @@ class ShoppingcartBackendApplicationTests {
 
 		mvc.perform(get("/")
 				.contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().is5xxServerError());
+				.andExpect(status().isOk());
+	}
+	@Test
+	void secondTest() throws Exception {
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity<String> entity = new HttpEntity<String>(null, headers);
+
+		ResultMatcher expect = MockMvcResultMatchers.content().string("Hello!");
+
+		mvc.perform(get("/")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(expect);
 	}
 
 
