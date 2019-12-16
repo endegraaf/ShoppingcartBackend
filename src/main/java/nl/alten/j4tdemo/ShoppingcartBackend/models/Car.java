@@ -1,7 +1,7 @@
 package nl.alten.j4tdemo.ShoppingcartBackend.models;
 
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 

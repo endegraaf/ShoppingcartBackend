@@ -16,7 +16,7 @@ import nl.alten.j4tdemo.ShoppingcartBackend.models.Car;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ShoppingcartApplication.class,
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ShoppingcartApplicationTests {
+public class CarsApplicationTests {
 
     @Autowired
     private TestRestTemplate restTemplate;
